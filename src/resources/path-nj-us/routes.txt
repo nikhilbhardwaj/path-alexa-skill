@@ -1,0 +1,7 @@
+agency_id,route_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color,route_sort_order,min_headway_minutes
+151,859,PATH,Hoboken - 33rd Street,,2,http://www.panynj.gov/path/pdf/path-map-schedule-english.pdf,4d92fb,000000,0,
+151,860,PATH,Hoboken - World Trade Center,,2,http://www.panynj.gov/path/pdf/path-map-schedule-english.pdf,65c100,000000,0,
+151,861,PATH,Journal Square - 33rd Street,,2,http://www.panynj.gov/path/pdf/path-map-schedule-english.pdf,FF9900,000000,0,
+151,1024,PATH,Journal Square - 33rd Street (via Hoboken),,2,http://www.panynj.gov/path/pdf/path-map-schedule-english.pdf,FF9900,000000,0,
+151,4768,PATH,Journal Square - Hoboken,,2,,FF9900,000000,0,
+151,862,PATH,Newark - World Trade Center,,2,http://www.panynj.gov/path/pdf/path-map-schedule-english.pdf,d93a30,ffffff,0,

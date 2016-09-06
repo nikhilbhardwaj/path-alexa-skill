@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_fare_url,agency_lang
+151,Port Authority Trans-Hudson Corporation,http://www.panynj.gov/path/,America/New_York,(800) 234-7284,http://www.panynj.gov/path/fares.html,en

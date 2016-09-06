@@ -1,0 +1,54 @@
+timetable_id,route_id,direction_id,start_date,end_date,monday,tuesday,wednesday,thursday,friday,saturday,sunday,route_label,service_notes,direction_label,orientation
+1,859,0,20160501,20170101,1,1,1,1,1,0,0,Hoboken - 33rd Street,Starting May 1st 2016,Outbound,horizontal
+2,859,1,20160501,20170101,1,1,1,1,1,0,0,Hoboken - 33rd Street,Starting May 1st 2016,Inbound,horizontal
+3,860,0,20160501,20170101,1,1,1,1,1,0,0,Hoboken - World Trade Center,Starting May 1st 2016,Outbound,horizontal
+4,860,1,20160501,20170101,1,1,1,1,1,0,0,Hoboken - World Trade Center,Starting May 1st 2016,Inbound,horizontal
+5,860,0,20160806,20170807,0,0,0,0,0,0,1,Hoboken - World Trade Center,Starting August 6th 2016,Outbound,horizontal
+6,860,0,20160806,20170807,0,0,0,0,0,1,0,Hoboken - World Trade Center,Starting August 6th 2016,Outbound,horizontal
+7,860,0,20160806,20170807,1,0,0,0,0,0,0,Hoboken - World Trade Center,Starting August 6th 2016,Outbound,horizontal
+8,860,1,20160806,20170807,0,0,0,0,0,0,1,Hoboken - World Trade Center,Starting August 6th 2016,Inbound,horizontal
+9,860,1,20160806,20170807,0,0,0,0,0,1,0,Hoboken - World Trade Center,Starting August 6th 2016,Inbound,horizontal
+10,860,1,20160806,20170807,1,0,0,0,0,0,0,Hoboken - World Trade Center,Starting August 6th 2016,Inbound,horizontal
+11,861,0,20160501,20170101,1,1,1,1,1,0,0,Journal Square - 33rd Street,Starting May 1st 2016,Outbound,horizontal
+12,861,1,20160501,20170101,1,1,1,1,1,0,0,Journal Square - 33rd Street,Starting May 1st 2016,Inbound,horizontal
+13,1024,0,20160501,20160805,0,0,0,0,0,0,1,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+14,1024,0,20160501,20160805,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+15,1024,0,20160501,20160805,1,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+16,1024,1,20160501,20160805,0,0,0,0,0,0,1,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+17,1024,1,20160501,20160805,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+18,1024,1,20160501,20160805,1,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+19,1024,0,20160806,20170807,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Starting August 6th 2016,Outbound,horizontal
+20,1024,0,20160806,20170807,0,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Starting August 6th 2016,Outbound,horizontal
+21,1024,0,20160806,20170807,1,0,0,0,0,0,0,Journal Square - 33rd Street (via Hoboken),Starting August 6th 2016,Outbound,horizontal
+22,1024,1,20160806,20170807,0,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Starting August 6th 2016,Inbound,horizontal
+23,1024,1,20160806,20170807,1,0,0,0,0,0,0,Journal Square - 33rd Street (via Hoboken),Starting August 6th 2016,Inbound,horizontal
+24,1024,0,20160903,20160905,0,0,0,0,0,0,1,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+25,1024,0,20160903,20160905,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+26,1024,0,20160903,20160905,1,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+27,1024,1,20160903,20160905,0,0,0,0,0,0,1,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+28,1024,1,20160903,20160905,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+29,1024,1,20160903,20160905,1,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+30,1024,0,20161112,20161114,0,0,0,0,0,0,1,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+31,1024,0,20161112,20161114,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+32,1024,0,20161112,20161114,1,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+33,1024,1,20161112,20161114,0,0,0,0,0,0,1,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+34,1024,1,20161112,20161114,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+35,1024,1,20161112,20161114,1,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+36,1024,0,20161126,20161128,0,0,0,0,0,0,1,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+37,1024,0,20161126,20161128,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+38,1024,0,20161126,20161128,1,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Outbound,horizontal
+39,1024,1,20161126,20161128,0,0,0,0,0,0,1,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+40,1024,1,20161126,20161128,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+41,1024,1,20161126,20161128,1,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Old as of Aug 6,Inbound,horizontal
+42,4768,0,20160806,20170807,0,0,0,0,0,0,1,Journal Square - Hoboken,Starting August 6th 2016,Outbound,horizontal
+43,4768,0,20160806,20170807,0,0,0,0,0,1,0,Journal Square - Hoboken,Starting August 6th 2016,Outbound,horizontal
+44,4768,0,20160806,20170807,1,0,0,0,0,0,0,Journal Square - Hoboken,Starting August 6th 2016,Outbound,horizontal
+45,4768,1,20160806,20170807,0,0,0,0,0,0,1,Journal Square - Hoboken,Starting August 6th 2016,Inbound,horizontal
+46,4768,1,20160806,20170807,0,0,0,0,0,1,0,Journal Square - Hoboken,Starting August 6th 2016,Inbound,horizontal
+47,4768,1,20160806,20170807,1,0,0,0,0,0,0,Journal Square - Hoboken,Starting August 6th 2016,Inbound,horizontal
+48,862,0,20160501,20170101,0,0,0,0,0,0,1,Newark - World Trade Center,Starting May 1st 2016,Outbound,horizontal
+49,862,0,20160501,20170101,0,0,0,0,0,1,0,Newark - World Trade Center,Starting May 1st 2016,Outbound,horizontal
+50,862,0,20160501,20170101,1,1,1,1,1,0,0,Newark - World Trade Center,Starting May 1st 2016,Outbound,horizontal
+51,862,1,20160501,20170101,0,0,0,0,0,0,1,Newark - World Trade Center,Starting May 1st 2016,Inbound,horizontal
+52,862,1,20160501,20170101,0,0,0,0,0,1,0,Newark - World Trade Center,Starting May 1st 2016,Inbound,horizontal
+53,862,1,20160501,20170101,1,1,1,1,1,0,0,Newark - World Trade Center,Starting May 1st 2016,Inbound,horizontal
