@@ -10,8 +10,10 @@ import org.junit.Test;
 
 import com.google.common.collect.ImmutableSet;
 
-public class ServicesResourceTest {
-  private ServicesResource services = new ServicesResource();
+import in.nikhilbhardwaj.path.alexa.GuicyAbstractTest;
+
+public class ServicesResourceTest extends GuicyAbstractTest {
+  private ServicesResource services = GUICE.getInstance(ServicesResource.class);
 
   @Test
   public void holidayScheduleOnThanksgiving() {

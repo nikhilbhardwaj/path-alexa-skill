@@ -10,7 +10,7 @@ public class Constants {
   public static class Filenames {
     public static final String RESOURCE_CALENDAR = "calendar.txt";
     public static final String RESOURCE_CALENDAR_DATES = "calendar_dates.txt";
-    public static final String RESOURCES_ROOT = "src/resources/path-nj-us/";
+    public static final String RESOURCES_ROOT = "/path-nj-us/";
     public static final String RESOURCE_STATIONS = "stops.txt";
     public static final String RESOURCE_STOP_TIMES = "stop_times.txt";
     public static final String RESOURCE_TRIPS = "trips.txt";

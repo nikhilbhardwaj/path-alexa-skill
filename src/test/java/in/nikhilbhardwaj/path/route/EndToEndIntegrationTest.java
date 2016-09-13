@@ -17,12 +17,11 @@ import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
+import in.nikhilbhardwaj.path.alexa.GuicyAbstractTest;
 import in.nikhilbhardwaj.path.route.model.ImmutableRouteRequest;
 import in.nikhilbhardwaj.path.route.model.RouteRequest;
 import in.nikhilbhardwaj.path.route.model.Trip;
 import in.nikhilbhardwaj.path.route.resources.ServicesResource;
-import in.nikhilbhardwaj.path.route.resources.StopTimesResource;
-import in.nikhilbhardwaj.path.route.resources.StopsResource;
 import in.nikhilbhardwaj.path.route.resources.TripsResource;
 
 /**
@@ -30,15 +29,9 @@ import in.nikhilbhardwaj.path.route.resources.TripsResource;
  * tests are tightly coupled with the data in the resources directory and will likely break when a
  * new copy of the path gtfs data is released and applied over.
  */
-public class EndToEndIntegrationTest {
-  // Resources are expensive to create, initialization involves parsing data from
-  // files on disk. They should either be created as (eager) singletons or injected
-  // with your dependency injection framework with the appropriate scope.
-  // Not doing so will slow down the handling of the actual request.
-  private ServicesResource services = new ServicesResource();
-  private StopsResource stops = new StopsResource();
-  private StopTimesResource stopTimes = new StopTimesResource(stops);
-  private TripsResource trips = new TripsResource(stopTimes);
+public class EndToEndIntegrationTest extends GuicyAbstractTest {
+  private ServicesResource services = GUICE.getInstance(ServicesResource.class);
+  private TripsResource trips = GUICE.getInstance(TripsResource.class);
 
   @Test
   public void popoCommute() {

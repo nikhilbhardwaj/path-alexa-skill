@@ -1,19 +1,20 @@
 package in.nikhilbhardwaj.path.route.resources;
 
-import static in.nikhilbhardwaj.path.route.model.Constants.Filenames.RESOURCES_ROOT;
 import static in.nikhilbhardwaj.path.route.model.Constants.Filenames.RESOURCE_STATIONS;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -30,9 +31,10 @@ import in.nikhilbhardwaj.path.route.model.StopNames;
  * This exposes convenience methods to convert between station names and station ids to assist with
  * the route computation.
  */
-public class StopsResource {
-  private static final Logger LOGGER = LoggerFactory.getLogger(StopsResource.class);
+@Singleton
+public final class StopsResource {
   private final BiMap<StopNames, Set<String>> stops;
+  private TransitDataRepository transitData;
 
   /**
    * Returns the stopName that corresponds to the stationId that is passed in.
@@ -53,15 +55,17 @@ public class StopsResource {
         .findFirst();
   }
 
-  public StopsResource() {
+  @Inject
+  public StopsResource(TransitDataRepository transitData) {
+    this.transitData = transitData;
     stops = initializeStops();
   }
 
   private BiMap<StopNames, Set<String>> initializeStops() {
     BiMap<StopNames, Set<String>> stops = HashBiMap.create();
-    try {
+    try (InputStreamReader stopsReader = new InputStreamReader(transitData.forResource(RESOURCE_STATIONS), StandardCharsets.UTF_8)) {
       Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader()
-          .parse(new FileReader(RESOURCES_ROOT + RESOURCE_STATIONS));
+          .parse(stopsReader);
       for (CSVRecord record : records) {
         StopNames stopName = StopNames.fromString(record.get("stop_name"));
         String stopId = record.get("stop_id");
@@ -74,8 +78,7 @@ public class StopsResource {
         }
       }
     } catch (IOException e) {
-      LOGGER.error("Unable to parse the station info from {}.", RESOURCE_STATIONS, e);
-      throw new IllegalStateException("Unable to read from file system.", e);
+      throw new IllegalStateException("Unable to initialize the Stops resource.", e);
     }
     return ImmutableBiMap.copyOf(stops);
   }

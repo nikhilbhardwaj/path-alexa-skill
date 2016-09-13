@@ -3,12 +3,11 @@ package in.nikhilbhardwaj.path.route.resources;
 import static in.nikhilbhardwaj.path.route.model.Constants.CsvHeaders.ROUTE_ID;
 import static in.nikhilbhardwaj.path.route.model.Constants.CsvHeaders.SERVICE_ID;
 import static in.nikhilbhardwaj.path.route.model.Constants.CsvHeaders.TRIP_ID;
-import static in.nikhilbhardwaj.path.route.model.Constants.Filenames.RESOURCES_ROOT;
 import static in.nikhilbhardwaj.path.route.model.Constants.Filenames.RESOURCE_TRIPS;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -34,9 +36,11 @@ import in.nikhilbhardwaj.path.route.model.Trip;
  * 
  * This resource does the bulk of route finding.
  */
-public class TripsResource {
+@Singleton
+public final class TripsResource {
   private List<Trip> trips;
   private StopTimesResource stopTimes;
+  private TransitDataRepository transitData;
 
   /**
    * @param serviceId
@@ -55,13 +59,11 @@ public class TripsResource {
       , routeRequest.time());
   }
 
-  public TripsResource(StopTimesResource stopTimes) {
-    try {
+  @Inject
+  public TripsResource(StopTimesResource stopTimes, TransitDataRepository transitData) {
       this.stopTimes = stopTimes;
+      this.transitData = transitData;
       initializeTrips();
-    } catch (IOException e) {
-      throw new IllegalStateException("Unable to initialize the Trips resource.", e);
-    }
   }
 
   private List<Trip> filterTripsBasedOnTime(Set<Trip> trips, LocalTime time) {
@@ -105,17 +107,20 @@ public class TripsResource {
         .findFirst();
   }
 
-  private void initializeTrips() throws FileNotFoundException, IOException {
+  private void initializeTrips() {
     trips = new ArrayList<>();
-    Iterable<CSVRecord> records = CSVFormat.RFC4180
-        .withFirstRecordAsHeader()
-        .parse(new FileReader(RESOURCES_ROOT + RESOURCE_TRIPS));
-    for (CSVRecord record : records) {
-      trips.add(ImmutableTrip.builder()
-        .tripId(record.get(TRIP_ID))
-        .routeId(record.get(ROUTE_ID))
-        .serviceId(record.get(SERVICE_ID))
-        .build());
+    try (InputStreamReader tripsReader = new InputStreamReader(transitData.forResource(RESOURCE_TRIPS), StandardCharsets.UTF_8)) {
+      Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader()
+          .parse(tripsReader);
+      for (CSVRecord record : records) {
+        trips.add(ImmutableTrip.builder()
+          .tripId(record.get(TRIP_ID))
+          .routeId(record.get(ROUTE_ID))
+          .serviceId(record.get(SERVICE_ID))
+          .build());
+      }
+    } catch (IOException e) {
+      throw new IllegalStateException("Unable to initialize the Trips resource.", e);
     }
   }
 }

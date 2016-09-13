@@ -5,14 +5,12 @@ import static in.nikhilbhardwaj.path.route.model.Constants.CsvHeaders.DATE;
 import static in.nikhilbhardwaj.path.route.model.Constants.CsvHeaders.END_DATE;
 import static in.nikhilbhardwaj.path.route.model.Constants.CsvHeaders.SERVICE_ID;
 import static in.nikhilbhardwaj.path.route.model.Constants.CsvHeaders.START_DATE;
-import static in.nikhilbhardwaj.path.route.model.Constants.Filenames.RESOURCES_ROOT;
 import static in.nikhilbhardwaj.path.route.model.Constants.Filenames.RESOURCE_CALENDAR;
 import static in.nikhilbhardwaj.path.route.model.Constants.Filenames.RESOURCE_CALENDAR_DATES;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -22,6 +20,9 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -39,7 +40,9 @@ import in.nikhilbhardwaj.path.route.model.Service;
  * schedule and the exceptions are applied from calendar_dates to account for weekends or for
  * holidays when the weekend schedule is active.
  */
-public class ServicesResource {
+@Singleton
+public final class ServicesResource {
+  private TransitDataRepository transitData;
   private Set<Service> services;
   // The schedule exceptions generally corresponds to holidays
   // or special events i.e. on new years eve the the trains run
@@ -61,36 +64,42 @@ public class ServicesResource {
       .collect(Collectors.toSet()));
   }
 
-  public ServicesResource() {
-    try {
-      initializeServiceIds();
-      initializeExceptions();
-    } catch (IOException | ParseException e) {
+  @Inject
+  public ServicesResource(TransitDataRepository transitData) {
+    this.transitData = transitData;
+    initializeServiceIds();
+    initializeExceptions();
+  }
+
+  private void initializeExceptions() {
+    exceptions = ArrayListMultimap.create();
+    try (InputStreamReader exceptionsReader = new InputStreamReader(transitData.forResource(RESOURCE_CALENDAR_DATES), StandardCharsets.UTF_8)) {
+      Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader()
+          .parse(exceptionsReader);
+      for (CSVRecord record : records) {
+        exceptions.put(LocalDate.parse(record.get(DATE), PATH_DATE_FORMATTER),
+          record.get(SERVICE_ID));
+      }  
+    } catch (IOException e) {
       throw new IllegalStateException("Unable to initialize ServicesResource.", e);
     }
   }
 
-  private void initializeExceptions() throws FileNotFoundException, IOException, ParseException {
-    exceptions = ArrayListMultimap.create();
-    Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader()
-        .parse(new FileReader(RESOURCES_ROOT + RESOURCE_CALENDAR_DATES));
-    for (CSVRecord record : records) {
-      exceptions.put(LocalDate.parse(record.get(DATE), PATH_DATE_FORMATTER),
-          record.get(SERVICE_ID));
-    }
-  }
-
-  private void initializeServiceIds() throws FileNotFoundException, IOException, ParseException {
+  private void initializeServiceIds() {
     services = new HashSet<>();
-    Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader()
-        .parse(new FileReader(RESOURCES_ROOT + RESOURCE_CALENDAR));
-    for (CSVRecord record : records) {
-      services.add(ImmutableService.builder()
-        .serviceId(record.get(SERVICE_ID))
-        .startDate(LocalDate.parse(record.get(START_DATE), PATH_DATE_FORMATTER))
-        .endDate(LocalDate.parse(record.get(END_DATE), PATH_DATE_FORMATTER))
-        .days(daysOnWhichServiceRuns(record))
-        .build());
+    try (InputStreamReader servicesReader = new InputStreamReader(transitData.forResource(RESOURCE_CALENDAR), StandardCharsets.UTF_8)) {
+      Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader()
+          .parse(servicesReader);
+      for (CSVRecord record : records) {
+        services.add(ImmutableService.builder()
+          .serviceId(record.get(SERVICE_ID))
+          .startDate(LocalDate.parse(record.get(START_DATE), PATH_DATE_FORMATTER))
+          .endDate(LocalDate.parse(record.get(END_DATE), PATH_DATE_FORMATTER))
+          .days(daysOnWhichServiceRuns(record))
+          .build());
+      }    
+    } catch (IOException e) {
+      throw new IllegalStateException("Unable to initialize ServicesResource.", e);
     }
   }
 

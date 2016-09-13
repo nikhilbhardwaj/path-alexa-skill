@@ -16,13 +16,12 @@ import org.junit.Test;
 
 import com.google.common.collect.ImmutableSet;
 
+import in.nikhilbhardwaj.path.alexa.GuicyAbstractTest;
 import in.nikhilbhardwaj.path.route.model.ImmutableRouteRequest;
 import in.nikhilbhardwaj.path.route.model.RouteRequest;
 
-public class TripsResourceTest {
-  private StopsResource stops = new StopsResource();
-  private StopTimesResource stopTimes = new StopTimesResource(stops);
-  private TripsResource trips = new TripsResource(stopTimes);
+public class TripsResourceTest extends GuicyAbstractTest {
+  private TripsResource trips = GUICE.getInstance(TripsResource.class);
 
   @Test
   public void noTripsForInvalidService() {
