@@ -13,14 +13,15 @@ import com.google.inject.Guice;
  * also need to build this project using the {@code lambda-compile} Ant task and upload the
  * resulting zip file to power your function.
  */
-public final class AlexaStarterSpeechletRequestStreamHandler extends SpeechletRequestStreamHandler {  /*
+public final class PathAlexaSkillSpeechletRequestStreamHandler extends SpeechletRequestStreamHandler {  
+  /*
    * This Id can be found on https://developer.amazon.com/edw/home.html#/ "Edit" the relevant Alexa
    * Skill and put the relevant Application Ids in this Set. Replace this with your own ID
    */
   private static final Set<String> supportedApplicationIds = ImmutableSet.of("amzn1.ask.skill.94b6f6d6-4ef8-4b8d-b600-953d56cf0dbd");
 
-  public AlexaStarterSpeechletRequestStreamHandler() {
-    super(Guice.createInjector(new AlexaStarterApplicationModule())
-        .getInstance(AlexaStarterSpeechlet.class), supportedApplicationIds);
+  public PathAlexaSkillSpeechletRequestStreamHandler() {
+    super(Guice.createInjector(new PathAlexaSkillApplicationModule())
+        .getInstance(PathAlexaSkillSpeechlet.class), supportedApplicationIds);
   }
 }

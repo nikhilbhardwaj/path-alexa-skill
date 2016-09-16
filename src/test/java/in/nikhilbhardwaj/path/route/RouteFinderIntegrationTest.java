@@ -29,7 +29,7 @@ import in.nikhilbhardwaj.path.route.resources.TripsResource;
  * tests are tightly coupled with the data in the resources directory and will likely break when a
  * new copy of the path gtfs data is released and applied over.
  */
-public class EndToEndIntegrationTest extends GuicyAbstractTest {
+public class RouteFinderIntegrationTest extends GuicyAbstractTest {
   private ServicesResource services = GUICE.getInstance(ServicesResource.class);
   private TripsResource trips = GUICE.getInstance(TripsResource.class);
 

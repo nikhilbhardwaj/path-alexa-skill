@@ -10,7 +10,7 @@ import in.nikhilbhardwaj.path.route.resources.TransitDataRepository;
  * This is the parent module, it install all the needed modules that can then be
  * used throughout the app.
  */
-public class AlexaStarterApplicationModule extends AbstractModule {
+public class PathAlexaSkillApplicationModule extends AbstractModule {
 
   @Override
   protected void configure() {

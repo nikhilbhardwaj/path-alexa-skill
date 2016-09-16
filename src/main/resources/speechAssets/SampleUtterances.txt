@@ -1,4 +1,10 @@
-HelloWorldIntent hello {Name}
-HelloWorldIntent hi {Name}
-HelloWorldIntent hello
-HelloWorldIntent hi
+PathTrackerIntent What time is the next train from {Origin} to {Destination}
+PathTrackerIntent What time is the next train to {Destination} from {Origin}
+PathTrackerIntent When is the next train between {Origin} and {Destination}
+PathTrackerIntent When is the next train departing from {Origin} to {Destination}
+PathTrackerIntent When is the next train departing {Origin} to {Destination}
+PathTrackerIntent Next train from {Origin} to {Destination}
+PathTrackerIntent Next train to {Destination} from {Origin}
+PathTrackerIntent Train from {Origin} to {Destination}
+PathTrackerIntent Train to {Destination} from {Origin}
+PathTrackerIntent Train between {Origin} and {Destination}

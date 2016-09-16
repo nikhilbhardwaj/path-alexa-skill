@@ -1,11 +1,15 @@
 {
   "intents": [
     {
-      "intent": "HelloWorldIntent",
+      "intent": "PathTrackerIntent",
       "slots": [
         {
-          "name": "Name",
-          "type": "AMAZON.US_FIRST_NAME"
+          "name": "Origin",
+          "type": "LIST_OF_STOPS"
+        },
+        {
+          "name": "Destination",
+          "type": "LIST_OF_STOPS"
         }
       ]
     },

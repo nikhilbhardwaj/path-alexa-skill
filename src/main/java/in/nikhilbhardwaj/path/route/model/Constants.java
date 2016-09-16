@@ -26,4 +26,14 @@ public class Constants {
     public static final String STOP_ID = "stop_id";
     public static final String TRIP_ID = "trip_id";
   }
+  
+  public static class AlexaSkill {
+    public static final String INTENT_CANCEL = "AMAZON.CancelIntent";
+    public static final String INTENT_HELP = "AMAZON.HelpIntent";
+    public static final String INTENT_PATH_TRACKER = "PathTrackerIntent";
+    public static final String INTENT_START_OVER = "AMAZON.StartOverIntent";
+    public static final String INTENT_STOP = "AMAZON.StopIntent";
+    public static final String SLOT_ORIGIN = "Origin";
+    public static final String SLOT_DESTINATION = "Destination";
+  }
 }
