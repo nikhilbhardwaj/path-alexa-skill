@@ -36,7 +36,7 @@ public class RouteFinderIntegrationTest extends GuicyAbstractTest {
   @Test
   public void popoCommute() {
     RouteRequest request = ImmutableRouteRequest.builder()
-        .date(LocalDate.of(2016, 9, 6))
+        .date(LocalDate.of(2017, 6, 2))
         .time(LocalTime.of(9, 30))
         .origin(NEWPORT)
         .destination(TWENTY_THIRD_ST)
@@ -64,7 +64,7 @@ public class RouteFinderIntegrationTest extends GuicyAbstractTest {
   @Test
   public void weekendSchedule() {
     RouteRequest request = ImmutableRouteRequest.builder()
-        .date(LocalDate.of(2016, 9, 10))
+        .date(LocalDate.of(2017, 6, 3))
         .time(LocalTime.of(9, 30)).
         origin(GROVE_ST)
         .destination(HARRISON)
@@ -83,7 +83,7 @@ public class RouteFinderIntegrationTest extends GuicyAbstractTest {
         .collect(Collectors.toList());
 
     List<LocalTime> expectedTimesForNext3Trains =
-        Lists.newArrayList(LocalTime.of(9, 34), LocalTime.of(9, 54), LocalTime.of(10, 14));
+        Lists.newArrayList(LocalTime.of(9, 42), LocalTime.of(10, 02), LocalTime.of(10, 22));
 
     assertFalse(timesForNext3Trains.isEmpty());
     assertArrayEquals(expectedTimesForNext3Trains.toArray(), timesForNext3Trains.toArray());

@@ -31,13 +31,12 @@ public class StopTimesResourceTest extends GuicyAbstractTest {
 
   @Test
   public void stopTimesFoundForValidTrip() {
-    Set<StopNames> stopNames = stopTimesResource.getStopTimesForTrip("159521A3907B5291").stream()
+    Set<StopNames> stopNames = stopTimesResource.getStopTimesForTrip("637072A5394B6507").stream()
         .map(trip -> trip.stopName())
         .collect(Collectors.toSet());
-    Set<StopNames> allStopsForTrip = ImmutableSet.of(THIRTY_THIRD_ST, NEWPORT, FOURTEEN_ST, HOBOKEN,
+    Set<StopNames> allStopsForTrip = ImmutableSet.of(THIRTY_THIRD_ST, NEWPORT, FOURTEEN_ST,
         GROVE_ST, CHRISTOPHER_ST, TWENTY_THIRD_ST, JOURNAL_SQ, NINTH_ST);
     Assert.assertFalse(stopNames.isEmpty());
-    System.out.println(stopNames);
     // Check for set equality
     Assert.assertTrue(stopNames.containsAll(allStopsForTrip));
     Assert.assertTrue(allStopsForTrip.containsAll(stopNames));

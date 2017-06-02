@@ -13,11 +13,12 @@ public enum StopNames {
   JOURNAL_SQ("Journal Square"),
   NEWARK("Newark"),
   NEWPORT("Newport"),
-  WTC("World Trade Center");
-
+  WTC("World Trade Center"),
+  UNKNOWN("Unknown Stop")
+  ;
   private final String name;
 
-  private StopNames(String name) {
+  StopNames(String name) {
     this.name = name;
   }
 
@@ -33,6 +34,6 @@ public enum StopNames {
         }
       }
     }
-    throw new IllegalArgumentException("No constant with text " + text + " found");
+    return UNKNOWN;
   }
 }

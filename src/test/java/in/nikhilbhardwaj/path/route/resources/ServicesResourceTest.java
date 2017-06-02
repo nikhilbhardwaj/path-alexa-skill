@@ -16,29 +16,28 @@ public class ServicesResourceTest extends GuicyAbstractTest {
   private ServicesResource services = GUICE.getInstance(ServicesResource.class);
 
   @Test
-  public void holidayScheduleOnThanksgiving() {
-    LocalDate thanksgiving = LocalDate.parse("20161124", PATH_DATE_FORMATTER);
-    Set<String> exceptionsOnThanksgiving =
-        ImmutableSet.of("3941A5283", "3529A4969", "3893A5283", "3528A4969");
-    Set<String> servicesOnThanksgiving = services.getServiceIdsForDate(thanksgiving);
-    assertTrue(servicesOnThanksgiving.containsAll(exceptionsOnThanksgiving));
-    assertTrue(exceptionsOnThanksgiving.containsAll(servicesOnThanksgiving));
+  public void holidaySchedule() {
+    LocalDate memorialDay = LocalDate.parse("20170529", PATH_DATE_FORMATTER);
+    Set<String> exceptionsOnHoliday = ImmutableSet.of("5394A6507", "5395A6507");
+    Set<String> servicesOnHoliday = services.getServiceIdsForDate(memorialDay);
+    assertTrue(servicesOnHoliday.containsAll(exceptionsOnHoliday));
+    assertTrue(exceptionsOnHoliday.containsAll(servicesOnHoliday));
   }
 
   @Test
   public void regularWeekdaySchedule() {
-    LocalDate regularWednesday = LocalDate.parse("20160907", PATH_DATE_FORMATTER);
+    LocalDate regularWednesday = LocalDate.parse("20170602", PATH_DATE_FORMATTER);
     Set<String> servicesRunning = services.getServiceIdsForDate(regularWednesday);
-    Set<String> expectedServices = ImmutableSet.of("3528A4969", "3941A5283");
+    Set<String> expectedServices = ImmutableSet.of("5302A6349", "5394A6507");
     assertTrue(servicesRunning.containsAll(expectedServices));
     assertTrue(expectedServices.containsAll(servicesRunning));
   }
 
   @Test
   public void regularWeekendSchedule() {
-    LocalDate regularSunday = LocalDate.parse("20161016", PATH_DATE_FORMATTER);
+    LocalDate regularSunday = LocalDate.parse("20170604", PATH_DATE_FORMATTER);
     Set<String> servicesRunning = services.getServiceIdsForDate(regularSunday);
-    Set<String> expectedServices = ImmutableSet.of("3894A5283", "3530A4969");
+    Set<String> expectedServices = ImmutableSet.of("5396A6507", "5302A6349");
     assertTrue(servicesRunning.containsAll(expectedServices));
     assertTrue(expectedServices.containsAll(servicesRunning));
   }

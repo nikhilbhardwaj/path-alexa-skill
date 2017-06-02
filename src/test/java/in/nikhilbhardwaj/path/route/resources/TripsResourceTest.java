@@ -43,25 +43,25 @@ public class TripsResourceTest extends GuicyAbstractTest {
         .origin(WTC)
         .destination(FOURTEEN_ST)
         .build();
-    assertTrue(trips.getTripsForServiceConnectingOriginAndDestination("3907A5291", request)
+    assertTrue(trips.getTripsForServiceConnectingOriginAndDestination("5394A6507", request)
         .isEmpty());
   }
 
   @Test
   public void tripsFoundForValidService() {
     RouteRequest request = ImmutableRouteRequest.builder()
-        .date(LocalDate.of(2016, 9, 7))
+        .date(LocalDate.of(2017, 6, 2))
         .time(LocalTime.of(9, 30)).
         origin(NEWPORT)
         .destination(FOURTEEN_ST)
         .build();
 
-    Set<String> tripIds = trips.getTripsForServiceConnectingOriginAndDestination("3907A5291", request)
+    Set<String> tripIds = trips.getTripsForServiceConnectingOriginAndDestination("5394A6507", request)
             .stream()
             .map(trip -> trip.tripId())
             .collect(Collectors.toSet());
-    Set<String> someKnownTrips = ImmutableSet.of("159406A3907B5291", "159410A3907B5291",
-        "159444A3907B5291", "159425A3907B5291", "159417A3907B5291");
+    Set<String> someKnownTrips = ImmutableSet.of("637012A5394B6507", "637019A5394B6507",
+        "637064A5394B6507", "636952A5394B6507", "637054A5394B6507");
     assertFalse(tripIds.isEmpty());
     assertTrue(tripIds.containsAll(someKnownTrips));
   }
